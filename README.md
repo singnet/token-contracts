@@ -1,10 +1,5 @@
-# SingularityNetwork
-Includes contracts, migrations, tests
-
-## Design Specifications
-
-[Smart Contracts Design ](./docs/SNContractsDesignSpecs.md)
-
+# token-contracts
+Includes token contracts, migrations, tests
 
 ## Requirements
 
@@ -23,14 +18,4 @@ npm install
 ```bash
 npm run test
 ```
-
-or 
-
-```bash
-truffle test
-```
-
-## Flattening
-
-`solidity_flattener contracts/Contract.sol --solc-paths=zeppelin-solidity=$(pwd)/node_modules/zeppelin-solidity/ --output contract.sol`
 
