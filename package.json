@@ -1,9 +1,8 @@
 {
-  "name": "singnet-contracts",
-  "version": "1.0.0",
-  "description": "Includes contracts, migrations, tests",
+  "name": "singularitynet-token-contracts",
+  "version": "0.0.1",
+  "description": "Includes token contracts, migrations, tests",
   "directories": {
-    "doc": "docs",
     "test": "test"
   },
   "scripts": {
@@ -11,8 +10,16 @@
     "deploy": "node_modules/.bin/truffle migrate",
     "test": "rm -rf build && node_modules/.bin/truffle test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/singnet/token-contracts.git"
+  },
   "author": "tiero",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/singnet/token-contracts/issues"
+  },
+  "homepage": "https://github.com/singnet/token-contracts#readme",
   "dependencies": {
     "truffle": "4.0.1",
     "zeppelin-solidity": "1.4.0"
@@ -20,7 +27,6 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "chai-bignumber": "^2.0.2",
-    "truffle-hdwallet-provider": "^0.0.3"
+    "chai-bignumber": "^2.0.2"
   }
 }
