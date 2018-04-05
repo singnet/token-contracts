@@ -1,11 +1,13 @@
 {
   "name": "singularitynet-token-contracts",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "private": true,
   "description": "Includes token contracts, migrations, tests",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "package-npm": "node scripts/package-npm.js",
     "compile": "node_modules/.bin/truffle compile",
     "deploy": "node_modules/.bin/truffle migrate",
     "test": "rm -rf build && node_modules/.bin/truffle test"
@@ -25,6 +27,7 @@
     "zeppelin-solidity": "1.4.0"
   },
   "devDependencies": {
+    "fs-extra": "^5.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2"
