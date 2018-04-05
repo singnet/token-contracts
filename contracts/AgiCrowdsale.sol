@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import "../tokens/SingularityNetToken.sol";
+import "./SingularityNetToken.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ReentrancyGuard.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
