@@ -5,14 +5,19 @@ const path = require("path");
 const npmModulePath = "build/npm-module";
 const packageJson = "package.json";
 
-// relative to repo root => relative to module root
+// source dir relative to repo root => dest dir relative to module root
 const mapDirs = {
 };
 
-// relative to repo root => relative to module root
+// source file relative to repo root => dest file relative to module root
+//                                or => key to extract from source file => dest file relative to module root
 const mapFiles = {
-	"contracts/SingularityNetToken.sol": "SingularityNetToken.sol",
-	"resources/SingularityNetToken.json": "SingularityNetToken.json",
+	"contracts/SingularityNetToken.sol": "sol/SingularityNetToken.sol",
+		"resources/SingularityNetToken.json": {
+		"abi": "abi/SingularityNetToken.json",
+		"networks": "networks/SingularityNetToken.json",
+		"bytecode": "bytecode/SingularityNetToken.json"
+	},
 	"resources/npm-README.md": "README.md",
 	"LICENSE": "LICENSE"
 };
@@ -44,10 +49,19 @@ for (let sourceDir in mapDirs) {
 }
 
 for (let sourceFile in mapFiles) {
-	let destFile = path.join(npmModulePath, mapFiles[sourceFile]);
-	let destParent = path.resolve(destFile, "../");
-	fse.mkdirsSync(destParent);
-	fse.copySync(sourceFile, destFile);
+	if (mapFiles[sourceFile] !== null && typeof mapFiles[sourceFile] === "object") {
+		for (key in mapFiles[sourceFile]) {
+			let destFile = path.join(npmModulePath, mapFiles[sourceFile][key]);
+			let destParent = path.resolve(destFile, "../");
+			fse.mkdirsSync(destParent);
+			fse.writeJsonSync(destFile, fse.readJsonSync(sourceFile)[key]);
+		}
+	} else {
+		let destFile = path.join(npmModulePath, mapFiles[sourceFile]);
+		let destParent = path.resolve(destFile, "../");
+		fse.mkdirsSync(destParent);
+		fse.copySync(sourceFile, destFile);
+	}
 }
 
 let packageJsonIn = fse.readJsonSync(packageJson);
