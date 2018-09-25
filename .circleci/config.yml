@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/node:8.10
+    working_directory: ~/singnet/token-contracts
+    steps:
+    - checkout
+    - run:
+        name: Build token-contracts
+        command: |
+          npm install
+          npm run-script compile
+          npm run-script package-npm
+          npm run test
