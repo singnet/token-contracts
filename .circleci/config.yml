@@ -12,4 +12,7 @@ jobs:
           npm install
           npm run-script compile
           npm run-script package-npm
+    - run:
+        name: Test token-contracts
+        command: |
           npm run test
