@@ -19,7 +19,6 @@ jobs:
     - run:
         name: Trigger platform-pipeline build
         command: |
-          echo CIRCLECI_PLATFORM_PIPELINE_TOKEN=$CIRCLECI_PLATFORM_PIPELINE_TOKEN
           if [ "$CIRCLE_BRANCH" == "$TRIGGER_BUILD_BRANCH" ]
           then
             curl -u ${CIRCLECI_PLATFORM_PIPELINE_TOKEN}: \
