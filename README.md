@@ -1,4 +1,7 @@
 # token-contracts
+
+[![CircleCI](https://circleci.com/gh/singnet/token-contracts.svg?style=svg)](https://circleci.com/gh/singnet/token-contracts)
+
 Includes token contracts, migrations, tests
 
 ## Contracts
