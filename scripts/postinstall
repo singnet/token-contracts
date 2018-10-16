@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ "$npm_config_local" == "true" ]]; then
+    exit 0
+fi
+
+npm run package-npm
+cp -R ./build/npm-module/* .

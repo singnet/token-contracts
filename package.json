@@ -6,11 +6,17 @@
   "directories": {
     "test": "test"
   },
+  "files": [
+      "contracts",
+      "resources",
+      "scripts"
+  ],
   "scripts": {
     "package-npm": "node scripts/package-npm.js",
-    "compile": "node_modules/.bin/truffle compile",
-    "deploy": "node_modules/.bin/truffle migrate",
-    "test": "rm -rf build && node_modules/.bin/truffle test"
+    "compile": "truffle compile",
+    "deploy": "truffle migrate",
+    "test": "rm -rf build && truffle test",
+    "postinstall": "scripts/postinstall"
   },
   "repository": {
     "type": "git",
@@ -23,11 +29,11 @@
   },
   "homepage": "https://github.com/singnet/token-contracts#readme",
   "dependencies": {
-    "truffle": "4.0.1",
-    "zeppelin-solidity": "1.4.0"
+    "zeppelin-solidity": "1.4.0",
+    "fs-extra": "^5.0.0"
   },
   "devDependencies": {
-    "fs-extra": "^5.0.0",
+    "truffle": "4.0.1",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2"

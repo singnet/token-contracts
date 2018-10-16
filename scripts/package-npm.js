@@ -1,5 +1,6 @@
 "use-strict";
 
+const fs = require("fs");
 const fse = require("fs-extra");
 const path = require("path");
 const npmModulePath = "build/npm-module";
@@ -16,7 +17,7 @@ const mapFiles = {
     "resources/SingularityNetToken.json": {
         "abi": "abi/SingularityNetToken.json",
         "networks": "networks/SingularityNetToken.json",
-        "bytecode": "bytecode/SingularityNetToken.json"
+        "bytecode": "bytecode/SingularityNetToken.hex"
     },
     "resources/npm-README.md": "README.md",
     "LICENSE": "LICENSE"
@@ -54,7 +55,13 @@ for (let sourceFile in mapFiles) {
             let destFile = path.join(npmModulePath, mapFiles[sourceFile][key]);
             let destParent = path.resolve(destFile, "../");
             fse.mkdirsSync(destParent);
-            fse.writeJsonSync(destFile, fse.readJsonSync(sourceFile)[key]);
+            if (key === "bytecode") {
+                // write bytecode as pure hex number string to be compatible
+                // with abigen
+                fs.writeFileSync(destFile, fse.readJsonSync(sourceFile)[key]);
+            } else {
+                fse.writeJsonSync(destFile, fse.readJsonSync(sourceFile)[key]);
+            }
         }
     } else {
         let destFile = path.join(npmModulePath, mapFiles[sourceFile]);
