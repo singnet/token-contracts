@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/node:8.10
+    working_directory: ~/singnet/token-contracts
+    environment:
+      TRIGGER_BUILD_BRANCH: master
+    steps:
+    - checkout
+    - run:
+        name: Build
+        command: |
+          npm install
+    - run:
+        name: Test
+        command: |
+          npm run test
+    - run:
+        name: Trigger platform-pipeline build
+        command: |
+          if [ "$CIRCLE_BRANCH" == "$TRIGGER_BUILD_BRANCH" ]
+          then
+            curl -u ${CIRCLECI_PLATFORM_PIPELINE_TOKEN}: \
+              -d build_parameters[CIRCLE_JOB]=build \
+              https://circleci.com/api/v1.1/project/github/singnet/platform-pipeline/tree/${TRIGGER_BUILD_BRANCH}
+          fi
