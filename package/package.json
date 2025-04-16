@@ -1,0 +1,18 @@
+{
+    "name": "singularitynet-token-contracts",
+    "version": "3.0.3",
+    "description": "Includes token contracts, migrations, tests",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/singnet/agix-contracts.git"
+    },
+    "author": "SingularityNET",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/singnet/agix-contracts/issues"
+    },
+    "homepage": "https://github.com/singnet/agix-contracts#readme",
+    "dependencies": {
+        "@openzeppelin/contracts": "^3.2.0"
+    }
+}
